@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ПРИСТАН — Внос на алкохол и кафе · Доставка във Варна</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink-green:#1E2B22;
+    --ink-green-2:#16201A;
+    --parchment:#EFE9DA;
+    --parchment-2:#E4DCC8;
+    --burgundy:#7A1F2B;
+    --burgundy-2:#5E1620;
+    --brass:#B8934F;
+    --brass-light:#D4B77A;
+    --espresso:#3C2415;
+    --cream:#F5F1E4;
+    --ok:#4C7A52;
+    --shadow: 0 12px 32px rgba(0,0,0,.28);
+    --radius: 2px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--parchment);
+    color:var(--ink-green-2);
+    font-family:'Inter',sans-serif;
+    line-height:1.5;
+  }
+  h1,h2,h3,.display{
+    font-family:'Fraunces',serif;
+    font-weight:600;
+    letter-spacing:-0.01em;
+    margin:0;
+    color:var(--ink-green-2);
+  }
+  .mono{font-family:'IBM Plex Mono',monospace;}
+  a{color:inherit;}
+  img{max-width:100%;display:block;}
+  button{font-family:inherit;cursor:pointer;}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 24px;}
+  .eyebrow{
+    font-family:'IBM Plex Mono',monospace;
+    text-transform:uppercase;
+    letter-spacing:.14em;
+    font-size:.72rem;
+    color:var(--brass);
+    font-weight:500;
+  }
+  :focus-visible{outline:2px solid var(--brass); outline-offset:3px;}
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.001s !important; animation-iteration-count:1 !important; scroll-behavior:auto !important; transition-duration:0.001s !important;}
+  }
+
+  /* ===== HEADER ===== */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:var(--ink-green);
+    border-bottom:1px solid rgba(184,147,79,.35);
+  }
+  .nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:14px 24px; max-width:1180px; margin:0 auto;
+  }
+  .brand{display:flex; align-items:center; gap:10px; color:var(--cream); text-decoration:none;}
+  .brand-mark{
+    width:34px; height:34px; border-radius:50%;
+    border:1.5px solid var(--brass);
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Fraunces',serif; font-weight:700; color:var(--brass); font-size:1rem;
+  }
+  .brand-name{font-family:'Fraunces',serif; font-size:1.28rem; font-weight:600; letter-spacing:.02em;}
+  nav.links{display:flex; gap:28px; list-style:none; margin:0; padding:0;}
+  nav.links a{
+    color:var(--parchment); text-decoration:none; font-size:.92rem; font-weight:500;
+    padding-bottom:3px; border-bottom:1px solid transparent; transition:border-color .2s, color .2s;
+  }
+  nav.links a:hover{border-color:var(--brass); color:var(--brass-light);}
+  .nav-right{display:flex; align-items:center; gap:14px;}
+  .phone-pill{
+    display:flex; align-items:center; gap:8px; color:var(--cream); text-decoration:none;
+    font-family:'IBM Plex Mono',monospace; font-size:.85rem; border:1px solid rgba(245,241,228,.25);
+    padding:7px 12px; border-radius:20px; transition:border-color .2s, background .2s;
+  }
+  .phone-pill:hover{border-color:var(--brass); background:rgba(184,147,79,.1);}
+  .cart-btn{
+    position:relative; background:var(--brass); color:var(--ink-green-2); border:none;
+    width:40px; height:40px; border-radius:50%; display:flex; align-items:center; justify-content:center;
+    font-size:1.1rem; transition:transform .15s;
+  }
+  .cart-btn:hover{transform:translateY(-2px);}
+  .cart-count{
+    position:absolute; top:-4px; right:-4px; background:var(--burgundy); color:#fff;
+    font-size:.65rem; font-weight:700; min-width:17px; height:17px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center; font-family:'IBM Plex Mono',monospace;
+    border:2px solid var(--ink-green);
+  }
+  .burger{display:none; background:none; border:none; color:var(--cream); font-size:1.4rem;}
+
+  /* ===== HERO ===== */
+  .hero{
+    background:
+      radial-gradient(ellipse at 78% 18%, rgba(184,147,79,.16), transparent 55%),
+      linear-gradient(180deg, var(--ink-green) 0%, var(--ink-green-2) 100%);
+    color:var(--cream);
+    padding:88px 24px 90px;
+    position:relative;
+    overflow:hidden;
+  }
+  .hero .wrap{display:grid; grid-template-columns:1.15fr .85fr; gap:56px; align-items:center;}
+  .hero h1{
+    font-size:clamp(2.4rem, 4.6vw, 3.9rem);
+    line-height:1.04;
+    color:var(--cream);
+  }
+  .hero h1 em{color:var(--brass-light); font-style:italic; font-weight:500;}
+  .hero p.lead{
+    margin-top:22px; max-width:46ch; color:rgba(245,241,228,.78); font-size:1.08rem;
+  }
+  .hero-cta{display:flex; gap:14px; margin-top:34px; flex-wrap:wrap;}
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    padding:14px 26px; border-radius:2px; text-decoration:none; font-weight:600; font-size:.92rem;
+    border:1px solid transparent; transition:transform .15s, box-shadow .15s, background .2s;
+  }
+  .btn-primary{background:var(--brass); color:var(--ink-green-2);}
+  .btn-primary:hover{transform:translateY(-2px); box-shadow:var(--shadow);}
+  .btn-outline{border-color:rgba(245,241,228,.4); color:var(--cream);}
+  .btn-outline:hover{border-color:var(--brass); color:var(--brass-light);}
+  .btn-burgundy{background:var(--burgundy); color:#fff;}
+  .btn-burgundy:hover{background:var(--burgundy-2); transform:translateY(-2px);}
+
+  /* Stamp */
+  .stamp-wrap{display:flex; justify-content:center;}
+  .stamp{
+    width:250px; height:250px; border-radius:50%; border:2px solid var(--brass);
+    position:relative; display:flex; align-items:center; justify-content:center;
+    transform:rotate(-9deg); flex-shrink:0;
+  }
+  .stamp::before{
+    content:""; position:absolute; inset:12px; border:1px dashed rgba(184,147,79,.55); border-radius:50%;
+  }
+  .stamp svg{position:absolute; inset:0; width:100%; height:100%;}
+  .stamp-center{font-family:'Fraunces',serif; text-align:center; color:var(--brass-light);}
+  .stamp-center .big{font-size:2.1rem; font-weight:700; display:block;}
+  .stamp-center .small{font-family:'IBM Plex Mono',monospace; font-size:.62rem; letter-spacing:.14em; color:rgba(245,241,228,.65); display:block; margin-top:4px;}
+
+  /* ===== ORIGINS MARQUEE ===== */
+  .origins{background:var(--espresso); padding:16px 0; overflow:hidden; border-top:1px solid rgba(184,147,79,.3); border-bottom:1px solid rgba(184,147,79,.3);}
+  .marquee-track{display:flex; width:max-content; animation:marquee 32s linear infinite;}
+  .origins:hover .marquee-track{animation-play-state:paused;}
+  @keyframes marquee{from{transform:translateX(0);} to{transform:translateX(-50%);}}
+  .origin-item{
+    display:flex; align-items:center; gap:10px; color:var(--parchment); white-space:nowrap;
+    font-family:'IBM Plex Mono',monospace; font-size:.82rem; padding:0 28px; border-right:1px solid rgba(184,147,79,.28);
+  }
+  .origin-item b{color:var(--brass-light); font-weight:600;}
+
+  /* ===== SECTION SHARED ===== */
+  section{padding:88px 0;}
+  .section-head{max-width:640px; margin-bottom:48px;}
+  .section-head h2{font-size:clamp(1.9rem, 3vw, 2.6rem); margin-top:10px;}
+  .section-head p{color:#4B4638; margin-top:14px; font-size:1.02rem;}
+
+  /* ===== TABS + PRODUCTS ===== */
+  .tabs{display:flex; gap:10px; margin-bottom:36px;}
+  .tab-btn{
+    background:transparent; border:1px solid rgba(30,43,34,.25); color:var(--ink-green-2);
+    padding:10px 22px; border-radius:20px; font-weight:600; font-size:.88rem; transition:all .2s;
+  }
+  .tab-btn.active{background:var(--ink-green); color:var(--cream); border-color:var(--ink-green);}
+  .product-grid{display:grid; grid-template-columns:repeat(3, 1fr); gap:26px;}
+  .card{
+    background:var(--cream); border:1px solid rgba(30,43,34,.12); border-radius:2px; overflow:hidden;
+    display:flex; flex-direction:column; transition:box-shadow .2s, transform .2s;
+  }
+  .card:hover{box-shadow:var(--shadow); transform:translateY(-3px);}
+  .card-art{
+    height:150px; display:flex; align-items:center; justify-content:center; position:relative;
+  }
+  .card-art.alcohol{background:linear-gradient(160deg, var(--burgundy) 0%, var(--burgundy-2) 100%);}
+  .card-art.coffee{background:linear-gradient(160deg, #4A2E1A 0%, var(--espresso) 100%);}
+  .origin-badge{
+    position:absolute; top:10px; left:10px; font-family:'IBM Plex Mono',monospace; font-size:.62rem;
+    color:rgba(245,241,228,.85); border:1px solid rgba(245,241,228,.45); padding:3px 8px; border-radius:12px;
+    letter-spacing:.06em; text-transform:uppercase;
+  }
+  .card-body{padding:20px 20px 22px; display:flex; flex-direction:column; gap:8px; flex:1;}
+  .card-body h3{font-size:1.12rem;}
+  .card-meta{color:#6b6455; font-size:.85rem;}
+  .card-foot{display:flex; align-items:center; justify-content:space-between; margin-top:auto; padding-top:14px;}
+  .price{font-family:'IBM Plex Mono',monospace; font-weight:600; font-size:1.02rem; color:var(--ink-green-2);}
+  .add-btn{
+    background:var(--ink-green); color:var(--cream); border:none; padding:9px 16px; border-radius:2px;
+    font-weight:600; font-size:.82rem; transition:background .2s;
+  }
+  .add-btn:hover{background:var(--burgundy);}
+  .add-btn.added{background:var(--ok);}
+
+  /* ===== HOW IT WORKS ===== */
+  .how{background:var(--ink-green); color:var(--cream);}
+  .how .section-head p{color:rgba(245,241,228,.7);}
+  .how .eyebrow{color:var(--brass-light);}
+  .steps{display:grid; grid-template-columns:repeat(4,1fr); gap:0; position:relative;}
+  .steps::before{
+    content:""; position:absolute; top:22px; left:5%; right:5%; height:1px; background:repeating-linear-gradient(90deg, var(--brass) 0 8px, transparent 8px 16px);
+  }
+  .step{position:relative; padding-right:20px;}
+  .step-num{
+    width:44px; height:44px; border-radius:50%; background:var(--ink-green); border:1.5px solid var(--brass);
+    display:flex; align-items:center; justify-content:center; font-family:'IBM Plex Mono',monospace; color:var(--brass-light);
+    position:relative; z-index:2; margin-bottom:18px;
+  }
+  .step h3{color:var(--cream); font-size:1.08rem; margin-bottom:8px;}
+  .step p{color:rgba(245,241,228,.65); font-size:.9rem; margin:0;}
+
+  /* ===== DELIVERY ===== */
+  .delivery .wrap{display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:center;}
+  .zone-map{
+    background:var(--cream); border:1px solid rgba(30,43,34,.15); border-radius:2px; padding:30px;
+    position:relative;
+  }
+  .zone-ring{
+    position:relative; width:100%; aspect-ratio:1/1; max-width:340px; margin:0 auto;
+    border-radius:50%; border:1px dashed rgba(122,31,43,.4);
+    display:flex; align-items:center; justify-content:center;
+  }
+  .zone-ring::before{
+    content:""; position:absolute; inset:16%; border-radius:50%; border:1px dashed rgba(122,31,43,.4);
+  }
+  .zone-ring::after{
+    content:""; position:absolute; inset:32%; border-radius:50%; border:1px dashed rgba(122,31,43,.4);
+  }
+  .zone-center{
+    width:15%; aspect-ratio:1/1; border-radius:50%; background:var(--burgundy); color:#fff;
+    display:flex; align-items:center; justify-content:center; font-family:'IBM Plex Mono',monospace; font-size:.6rem;
+    text-align:center; font-weight:600; z-index:3; padding:6px;
+  }
+  .zone-list{display:flex; flex-wrap:wrap; gap:8px; margin-top:26px;}
+  .zone-chip{
+    font-family:'IBM Plex Mono',monospace; font-size:.76rem; border:1px solid rgba(30,43,34,.25);
+    padding:6px 12px; border-radius:14px; color:var(--ink-green-2);
+  }
+  .delivery-note{
+    margin-top:22px; font-size:.85rem; color:#6b6455; border-left:2px solid var(--brass); padding-left:14px;
+  }
+
+  /* ===== CONTACT ===== */
+  .contact{background:var(--parchment-2);}
+  .contact-grid{display:grid; grid-template-columns:1fr 1fr; gap:56px;}
+  .contact-list{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:16px;}
+  .contact-list li{
+    display:flex; align-items:center; gap:16px; background:var(--cream); padding:16px 18px;
+    border:1px solid rgba(30,43,34,.12); border-radius:2px;
+  }
+  .contact-icon{
+    width:40px; height:40px; border-radius:50%; background:var(--ink-green); color:var(--brass-light);
+    display:flex; align-items:center; justify-content:center; flex-shrink:0; font-size:1.05rem;
+  }
+  .contact-list a{text-decoration:none; font-weight:600; color:var(--ink-green-2);}
+  .contact-list .label{font-size:.72rem; text-transform:uppercase; letter-spacing:.08em; color:#8a8371; font-family:'IBM Plex Mono',monospace;}
+  .social-row{display:flex; gap:10px; margin-top:6px;}
+  .social-chip{
+    flex:1; text-align:center; background:var(--ink-green); color:var(--cream); text-decoration:none;
+    padding:12px; border-radius:2px; font-size:.82rem; font-weight:600; transition:background .2s;
+  }
+  .social-chip:hover{background:var(--burgundy);}
+  .contact-form{background:var(--cream); border:1px solid rgba(30,43,34,.12); padding:28px; border-radius:2px;}
+  .field{margin-bottom:16px;}
+  .field label{display:block; font-size:.78rem; font-weight:600; margin-bottom:6px; color:#4B4638;}
+  .field input, .field textarea{
+    width:100%; padding:11px 12px; border:1px solid rgba(30,43,34,.25); border-radius:2px; font-family:inherit; font-size:.92rem;
+    background:#fff;
+  }
+  .field textarea{resize:vertical; min-height:80px;}
+
+  /* ===== FOOTER ===== */
+  footer{background:var(--ink-green-2); color:rgba(245,241,228,.6); padding:36px 0; font-size:.82rem;}
+  footer .wrap{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;}
+  .age-badge{
+    border:1px solid var(--brass); color:var(--brass-light); font-family:'IBM Plex Mono',monospace;
+    padding:4px 10px; border-radius:12px; font-size:.72rem;
+  }
+
+  /* ===== CART DRAWER ===== */
+  .overlay{
+    position:fixed; inset:0; background:rgba(20,26,20,.55); opacity:0; pointer-events:none; transition:opacity .25s; z-index:90;
+  }
+  .overlay.open{opacity:1; pointer-events:auto;}
+  .drawer{
+    position:fixed; top:0; right:0; height:100%; width:420px; max-width:92vw; background:var(--cream);
+    z-index:95; transform:translateX(100%); transition:transform .3s ease; display:flex; flex-direction:column;
+    box-shadow:-8px 0 30px rgba(0,0,0,.3);
+  }
+  .drawer.open{transform:translateX(0);}
+  .drawer-head{
+    padding:20px 22px; background:var(--ink-green); color:var(--cream); display:flex; justify-content:space-between; align-items:center;
+  }
+  .drawer-head h3{color:var(--cream); font-size:1.2rem;}
+  .close-btn{background:none; border:none; color:var(--cream); font-size:1.3rem;}
+  .drawer-body{padding:20px 22px; overflow-y:auto; flex:1;}
+  .cart-item{display:flex; justify-content:space-between; align-items:center; gap:10px; padding:12px 0; border-bottom:1px solid rgba(30,43,34,.1);}
+  .cart-item-name{font-weight:600; font-size:.92rem;}
+  .cart-item-meta{font-size:.76rem; color:#8a8371; font-family:'IBM Plex Mono',monospace;}
+  .qty-controls{display:flex; align-items:center; gap:8px;}
+  .qty-controls button{
+    width:24px; height:24px; border:1px solid rgba(30,43,34,.3); background:#fff; border-radius:50%; font-size:.85rem; line-height:1;
+  }
+  .empty-cart{text-align:center; color:#8a8371; padding:50px 10px; font-size:.9rem;}
+  .drawer-total{display:flex; justify-content:space-between; padding:16px 0; font-weight:700; font-family:'IBM Plex Mono',monospace; border-top:1px solid rgba(30,43,34,.15); margin-top:8px;}
+  .drawer-foot{padding:18px 22px 24px; border-top:1px solid rgba(30,43,34,.12);}
+  .checkbox-row{display:flex; align-items:flex-start; gap:8px; font-size:.8rem; margin:14px 0; color:#4B4638;}
+  .checkbox-row input{margin-top:3px;}
+  .full-btn{width:100%; justify-content:center; margin-top:8px;}
+  .alt-contact{display:flex; gap:8px; margin-top:10px;}
+  .alt-contact a{flex:1; text-align:center; font-size:.8rem; padding:11px; border:1px solid rgba(30,43,34,.25); border-radius:2px; text-decoration:none; color:var(--ink-green-2); font-weight:600;}
+
+  @media(max-width:940px){
+    nav.links, .nav-right .phone-pill{display:none;}
+    .burger{display:block;}
+    .hero .wrap{grid-template-columns:1fr;}
+    .stamp-wrap{order:-1;}
+    .stamp{width:180px; height:180px;}
+    .product-grid{grid-template-columns:repeat(2,1fr);}
+    .steps{grid-template-columns:1fr 1fr; row-gap:36px;}
+    .steps::before{display:none;}
+    .contact-grid{grid-template-columns:1fr;}
+    .delivery .wrap{grid-template-columns:1fr;}
+  }
+  @media(max-width:560px){
+    .product-grid{grid-template-columns:1fr;}
+    .hero{padding:64px 20px 56px;}
+    section{padding:60px 0;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <a href="#top" class="brand">
+      <span class="brand-mark">П</span>
+      <span class="brand-name">ПРИСТАН</span>
+    </a>
+    <ul class="links">
+      <li><a href="#products">Алкохол</a></li>
+      <li><a href="#products">Кафе</a></li>
+      <li><a href="#delivery">Доставка</a></li>
+      <li><a href="#contact">Контакти</a></li>
+    </ul>
+    <div class="nav-right">
+      <a class="phone-pill" href="tel:+359877787888">☎ +359 877 787 888</a>
+      <button class="cart-btn" id="cartToggle" aria-label="Количка">
+        🛒<span class="cart-count" id="cartCount">0</span>
+      </button>
+      <button class="burger" id="burgerBtn" aria-label="Меню">☰</button>
+    </div>
+  </div>
+</header>
+
+<section class="hero" id="top">
+  <div class="wrap">
+    <div>
+      <p class="eyebrow">Внос · Алкохол &amp; Кафе · Пристанище Варна</p>
+      <h1>От пристанището<br>до <em>твоята чаша.</em></h1>
+      <p class="lead">Подбрани вносни напитки и кафе на зърна от Шотландия, Италия, Ямайка и Етиопия — поръчваш онлайн, а куриер ги носи направо на адрес във всеки квартал на Варна.</p>
+      <div class="hero-cta">
+        <a href="#products" class="btn btn-primary">Разгледай продуктите</a>
+        <a href="#delivery" class="btn btn-outline">Доставка във Варна</a>
+      </div>
+    </div>
+    <div class="stamp-wrap">
+      <div class="stamp">
+        <svg viewBox="0 0 250 250" aria-hidden="true">
+          <defs>
+            <path id="circlePath" d="M 125,125 m -95,0 a 95,95 0 1,1 190,0 a 95,95 0 1,1 -190,0" />
+          </defs>
+          <text font-family="IBM Plex Mono" font-size="11" fill="#D4B77A" letter-spacing="3">
+            <textPath href="#circlePath" startOffset="0%">ВНОС · ВАРНА · ПРИСТАН · EST. VN ·</textPath>
+          </text>
+        </svg>
+        <div class="stamp-center">
+          <span class="big">18+</span>
+          <span class="small">CARGO&nbsp;·&nbsp;VN&nbsp;PORT</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="origins" aria-hidden="true">
+  <div class="marquee-track">
+    <div class="origin-item"><b>Шотландия</b>·Уиски</div>
+    <div class="origin-item"><b>Франция</b>·Коняк</div>
+    <div class="origin-item"><b>Ямайка</b>·Ром</div>
+    <div class="origin-item"><b>Италия</b>·Ликьор &amp; Кафе</div>
+    <div class="origin-item"><b>Етиопия</b>·Кафе на зърна</div>
+    <div class="origin-item"><b>Мексико</b>·Текила</div>
+    <div class="origin-item"><b>Колумбия</b>·Кафе Supremo</div>
+    <div class="origin-item"><b>Англия</b>·Джин</div>
+    <div class="origin-item"><b>Бразилия</b>·Кафе Сантос</div>
+    <!-- duplicate for seamless loop -->
+    <div class="origin-item"><b>Шотландия</b>·Уиски</div>
+    <div class="origin-item"><b>Франция</b>·Коняк</div>
+    <div class="origin-item"><b>Ямайка</b>·Ром</div>
+    <div class="origin-item"><b>Италия</b>·Ликьор &amp; Кафе</div>
+    <div class="origin-item"><b>Етиопия</b>·Кафе на зърна</div>
+    <div class="origin-item"><b>Мексико</b>·Текила</div>
+    <div class="origin-item"><b>Колумбия</b>·Кафе Supremo</div>
+    <div class="origin-item"><b>Англия</b>·Джин</div>
+    <div class="origin-item"><b>Бразилия</b>·Кафе Сантос</div>
+  </div>
+</div>
+
+<section id="products">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Каталог</p>
+      <h2>Подбрани вносни напитки</h2>
+      <p>Примерни продукти — замени с твоя реален асортимент и цени.</p>
+    </div>
+    <div class="tabs">
+      <button class="tab-btn active" data-cat="alcohol">Алкохол</button>
+      <button class="tab-btn" data-cat="coffee">Кафе</button>
+    </div>
+    <div class="product-grid" id="productGrid"></div>
+  </div>
+</section>
+
+<section class="how">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Как поръчвате</p>
+      <h2>Четири стъпки до вратата ви</h2>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num mono">01</div>
+        <h3>Избери продукти</h3>
+        <p>Разгледай алкохол и кафе и добави желаните бутилки или пакети в количката.</p>
+      </div>
+      <div class="step">
+        <div class="step-num mono">02</div>
+        <h3>Въведи адрес</h3>
+        <p>Посочи квартал и адрес във Варна за доставка, както и телефон за връзка.</p>
+      </div>
+      <div class="step">
+        <div class="step-num mono">03</div>
+        <h3>Потвърждение</h3>
+        <p>Изпращаш поръчката по имейл или ни звъниш — потвърждаваме наличност и час.</p>
+      </div>
+      <div class="step">
+        <div class="step-num mono">04</div>
+        <h3>Доставка</h3>
+        <p>Куриер носи поръчката на адрес. При алкохол се проверява възраст 18+.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="delivery" id="delivery">
+  <div class="wrap">
+    <div>
+      <p class="eyebrow">Зона на доставка</p>
+      <h2 style="margin-top:10px; font-size:clamp(1.9rem,3vw,2.6rem);">Доставяме в цяла Варна</h2>
+      <p style="color:#4B4638; margin-top:14px;">Без значение дали си в центъра или в най-отдалечения квартал — куриер достига до теб. Времето за доставка зависи от натовареността и района.</p>
+      <div class="zone-list">
+        <span class="zone-chip">Център</span>
+        <span class="zone-chip">Чайка</span>
+        <span class="zone-chip">Владиславово</span>
+        <span class="zone-chip">Младост</span>
+        <span class="zone-chip">Възраждане</span>
+        <span class="zone-chip">Аспарухово</span>
+        <span class="zone-chip">Виница</span>
+        <span class="zone-chip">Галата</span>
+        <span class="zone-chip">Левски</span>
+        <span class="zone-chip">Изгрев</span>
+        <span class="zone-chip">Дружба</span>
+        <span class="zone-chip">+ всички останали квартали</span>
+      </div>
+      <p class="delivery-note">Доставката на алкохол се извършва само на лица над 18 години с проверка на документ за самоличност при получаване.</p>
+    </div>
+    <div class="zone-map">
+      <div class="zone-ring">
+        <div class="zone-center">ПРИСТАН<br>VN</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Контакти</p>
+      <h2>Свържи се с нас</h2>
+      <p>По телефон, имейл или в социалните мрежи — както ти е удобно.</p>
+    </div>
+    <div class="contact-grid">
+      <div>
+        <ul class="contact-list">
+          <li>
+            <div class="contact-icon">☎</div>
+            <div>
+              <div class="label">Телефон</div>
+              <a href="tel:+359877787888">+359 877 787 888</a>
+            </div>
+          </li>
+          <li>
+            <div class="contact-icon">✉</div>
+            <div>
+              <div class="label">Имейл</div>
+              <a href="mailto:coffeetnj@gmail.com">coffeetnj@gmail.com</a>
+            </div>
+          </li>
+          <li>
+            <div class="contact-icon">📍</div>
+            <div>
+              <div class="label">Адрес / зона</div>
+              <span style="font-weight:600;">Варна и всички квартали</span>
+            </div>
+          </li>
+        </ul>
+        <div class="social-row">
+          <a class="social-chip" href="#" target="_blank" rel="noopener">Facebook</a>
+          <a class="social-chip" href="#" target="_blank" rel="noopener">Instagram</a>
+          <a class="social-chip" href="#" target="_blank" rel="noopener">Viber</a>
+        </div>
+        <p style="font-size:.78rem; color:#8a8371; margin-top:10px;">* Постави реалните линкове към страниците и профилите на бизнеса тук.</p>
+      </div>
+      <form class="contact-form" id="quickContactForm">
+        <h3 style="font-size:1.05rem; margin-bottom:16px;">Бързо запитване</h3>
+        <div class="field">
+          <label for="qName">Име</label>
+          <input id="qName" type="text" required placeholder="Твоето име">
+        </div>
+        <div class="field">
+          <label for="qPhone">Телефон</label>
+          <input id="qPhone" type="tel" required placeholder="08xx xxx xxx">
+        </div>
+        <div class="field">
+          <label for="qMsg">Съобщение</label>
+          <textarea id="qMsg" placeholder="Пример: Искам да поръчам две бутилки уиски за Чайка..."></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary full-btn">Изпрати запитване</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 ПРИСТАН — Внос на алкохол и кафе, Варна. Всички права запазени.</span>
+    <span class="age-badge mono">Продажба само на лица 18+</span>
+  </div>
+</footer>
+
+<!-- CART DRAWER -->
+<div class="overlay" id="overlay"></div>
+<div class="drawer" id="cartDrawer" aria-label="Количка за поръчка">
+  <div class="drawer-head">
+    <h3>Твоята поръчка</h3>
+    <button class="close-btn" id="closeDrawer" aria-label="Затвори">✕</button>
+  </div>
+  <div class="drawer-body">
+    <div id="cartItemsList"></div>
+    <div id="orderForm" style="display:none; margin-top:10px;">
+      <div class="field">
+        <label for="oName">Име</label>
+        <input id="oName" type="text" required placeholder="Твоето име">
+      </div>
+      <div class="field">
+        <label for="oPhone">Телефон</label>
+        <input id="oPhone" type="tel" required placeholder="08xx xxx xxx">
+      </div>
+      <div class="field">
+        <label for="oZone">Квартал</label>
+        <input id="oZone" type="text" required placeholder="напр. Чайка">
+      </div>
+      <div class="field">
+        <label for="oAddress">Адрес (улица, номер)</label>
+        <input id="oAddress" type="text" required placeholder="ул. Примерна 12">
+      </div>
+      <div class="field">
+        <label for="oNote">Бележка (по желание)</label>
+        <textarea id="oNote" placeholder="Час за доставка, забележки..."></textarea>
+      </div>
+      <div class="checkbox-row">
+        <input type="checkbox" id="ageConfirm" required>
+        <label for="ageConfirm">Потвърждавам, че съм навършил/а 18 години.</label>
+      </div>
+    </div>
+  </div>
+  <div class="drawer-foot">
+    <div class="drawer-total">
+      <span>Общо</span>
+      <span class="mono" id="cartTotal">0.00 лв</span>
+    </div>
+    <button class="btn btn-primary full-btn" id="proceedBtn">Продължи към поръчка</button>
+    <div class="alt-contact">
+      <a href="tel:+359877787888">☎ Обади се</a>
+      <a href="https://wa.me/359877787888" id="waLink" target="_blank" rel="noopener">Viber/WhatsApp</a>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  const products = [
+    {id:'a1', cat:'alcohol', name:'Highland Reserve 12г.', origin:'Шотландия', meta:'Single Malt Whisky · 0.7л', price:89.90},
+    {id:'a2', cat:'alcohol', name:'Fine Champagne VSOP', origin:'Франция', meta:'Коняк · 0.7л', price:129.00},
+    {id:'a3', cat:'alcohol', name:'Plantation Reserve', origin:'Ямайка', meta:'Тъмен ром · 0.7л', price:74.50},
+    {id:'a4', cat:'alcohol', name:'Amaro Antico', origin:'Италия', meta:'Билков ликьор · 0.7л', price:42.00},
+    {id:'a5', cat:'alcohol', name:'London Dry Gin', origin:'Англия', meta:'Джин · 0.7л', price:54.90},
+    {id:'a6', cat:'alcohol', name:'Blanco Agave', origin:'Мексико', meta:'Текила · 0.7л', price:68.00},
+    {id:'c1', cat:'coffee', name:'Сидамо на зърна', origin:'Етиопия', meta:'250г печени зърна', price:18.50},
+    {id:'c2', cat:'coffee', name:'Сантос Бленд', origin:'Бразилия', meta:'1кг печени зърна', price:42.00},
+    {id:'c3', cat:'coffee', name:'Espresso Italiano', origin:'Италия', meta:'500г печени зърна', price:24.90},
+    {id:'c4', cat:'coffee', name:'Supremo', origin:'Колумбия', meta:'250г печени зърна', price:19.90},
+  ];
+
+  let currentCat = 'alcohol';
+  let cart = {}; // id -> qty
+
+  const grid = document.getElementById('productGrid');
+  const tabs = document.querySelectorAll('.tab-btn');
+  const cartCount = document.getElementById('cartCount');
+  const cartItemsList = document.getElementById('cartItemsList');
+  const cartTotalEl = document.getElementById('cartTotal');
+  const drawer = document.getElementById('cartDrawer');
+  const overlay = document.getElementById('overlay');
+  const orderForm = document.getElementById('orderForm');
+  const proceedBtn = document.getElementById('proceedBtn');
+
+  function money(n){ return n.toFixed(2) + ' лв'; }
+
+  function renderProducts(){
+    grid.innerHTML = '';
+    products.filter(p => p.cat === currentCat).forEach(p => {
+      const card = document.createElement('div');
+      card.className = 'card';
+      card.innerHTML = `
+        <div class="card-art ${p.cat}">
+          <span class="origin-badge">${p.origin}</span>
+          <span style="font-size:2.2rem;">${p.cat === 'alcohol' ? '🍾' : '☕'}</span>
+        </div>
+        <div class="card-body">
+          <h3>${p.name}</h3>
+          <div class="card-meta">${p.meta}</div>
+          <div class="card-foot">
+            <span class="price">${money(p.price)}</span>
+            <button class="add-btn" data-id="${p.id}">Добави</button>
+          </div>
+        </div>`;
+      grid.appendChild(card);
+    });
+    grid.querySelectorAll('.add-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const id = btn.dataset.id;
+        cart[id] = (cart[id] || 0) + 1;
+        btn.textContent = 'Добавено ✓';
+        btn.classList.add('added');
+        setTimeout(() => { btn.textContent = 'Добави'; btn.classList.remove('added'); }, 900);
+        renderCart();
+      });
+    });
+  }
+
+  tabs.forEach(t => t.addEventListener('click', () => {
+    tabs.forEach(x => x.classList.remove('active'));
+    t.classList.add('active');
+    currentCat = t.dataset.cat;
+    renderProducts();
+  }));
+
+  function renderCart(){
+    const ids = Object.keys(cart).filter(id => cart[id] > 0);
+    let total = 0;
+    let count = 0;
+    if(ids.length === 0){
+      cartItemsList.innerHTML = '<div class="empty-cart">Количката е празна.<br>Добави продукти от каталога.</div>';
+      orderForm.style.display = 'none';
+    } else {
+      cartItemsList.innerHTML = '';
+      ids.forEach(id => {
+        const p = products.find(pp => pp.id === id);
+        const qty = cart[id];
+        total += p.price * qty;
+        count += qty;
+        const row = document.createElement('div');
+        row.className = 'cart-item';
+        row.innerHTML = `
+          <div>
+            <div class="cart-item-name">${p.name}</div>
+            <div class="cart-item-meta">${money(p.price)} × ${qty}</div>
+          </div>
+          <div class="qty-controls">
+            <button data-id="${id}" data-act="minus">−</button>
+            <span class="mono">${qty}</span>
+            <button data-id="${id}" data-act="plus">+</button>
+          </div>`;
+        cartItemsList.appendChild(row);
+      });
+      orderForm.style.display = 'block';
+      cartItemsList.querySelectorAll('button[data-act]').forEach(b => {
+        b.addEventListener('click', () => {
+          const id = b.dataset.id;
+          if(b.dataset.act === 'plus') cart[id]++;
+          else cart[id] = Math.max(0, cart[id]-1);
+          renderCart();
+        });
+      });
+    }
+    cartTotalEl.textContent = money(total);
+    cartCount.textContent = count;
+  }
+
+  function openDrawer(){ drawer.classList.add('open'); overlay.classList.add('open'); }
+  function closeDrawer(){ drawer.classList.remove('open'); overlay.classList.remove('open'); }
+
+  document.getElementById('cartToggle').addEventListener('click', openDrawer);
+  document.getElementById('closeDrawer').addEventListener('click', closeDrawer);
+  overlay.addEventListener('click', closeDrawer);
+
+  proceedBtn.addEventListener('click', () => {
+    const ids = Object.keys(cart).filter(id => cart[id] > 0);
+    if(ids.length === 0){ alert('Количката е празна. Добави поне един продукт.'); return; }
+
+    const name = document.getElementById('oName').value.trim();
+    const phone = document.getElementById('oPhone').value.trim();
+    const zone = document.getElementById('oZone').value.trim();
+    const address = document.getElementById('oAddress').value.trim();
+    const note = document.getElementById('oNote').value.trim();
+    const ageOk = document.getElementById('ageConfirm').checked;
+
+    if(!name || !phone || !zone || !address){
+      alert('Моля, попълни име, телефон, квартал и адрес.');
+      return;
+    }
+    if(!ageOk){
+      alert('Моля, потвърди че си навършил/а 18 години.');
+      return;
+    }
+
+    let lines = ids.map(id => {
+      const p = products.find(pp => pp.id === id);
+      return `- ${p.name} (${p.origin}) × ${cart[id]} = ${money(p.price*cart[id])}`;
+    });
+    let total = ids.reduce((s,id) => s + products.find(p=>p.id===id).price*cart[id], 0);
+
+    const orderText =
+`Нова поръчка през сайта ПРИСТАН
+
+Клиент: ${name}
+Телефон: ${phone}
+Квартал: ${zone}
+Адрес: ${address}
+Бележка: ${note || '—'}
+
+Продукти:
+${lines.join('\n')}
+
+Общо: ${money(total)}`;
+
+    sendViaWeb3Forms({
+      subject: 'Нова поръчка от ' + name,
+      message: orderText,
+      name, phone
+    }, proceedBtn, 'Продължи към поръчка');
+  });
+
+  const quickForm = document.getElementById('quickContactForm');
+  const quickSubmitBtn = quickForm.querySelector('button[type="submit"]');
+  quickForm.addEventListener('submit', function(e){
+    e.preventDefault();
+    const name = document.getElementById('qName').value.trim();
+    const phone = document.getElementById('qPhone').value.trim();
+    const msg = document.getElementById('qMsg').value.trim();
+    if(!name || !phone){ alert('Моля, попълни име и телефон.'); return; }
+
+    sendViaWeb3Forms({
+      subject: 'Запитване от ' + name,
+      message: `Име: ${name}\nТелефон: ${phone}\n\nСъобщение:\n${msg || '—'}`,
+      name, phone
+    }, quickSubmitBtn, 'Изпрати запитване');
+  });
+
+  // ===== Web3Forms sender (free form-to-email service, no backend needed) =====
+  // 1. Go to https://web3forms.com, enter coffeetnj@gmail.com, get your Access Key instantly.
+  // 2. Paste it below instead of "YOUR_WEB3FORMS_ACCESS_KEY".
+  // Until a real key is set, it automatically falls back to opening the visitor's email app (mailto).
+  const WEB3FORMS_ACCESS_KEY = 'YOUR_WEB3FORMS_ACCESS_KEY';
+  const NOTIFY_EMAIL = 'coffeetnj@gmail.com';
+
+  function sendViaWeb3Forms(data, btn, defaultLabel){
+    const mailtoFallback = () => {
+      const subject = encodeURIComponent(data.subject);
+      const body = encodeURIComponent(data.message);
+      window.location.href = `mailto:${NOTIFY_EMAIL}?subject=${subject}&body=${body}`;
+    };
+
+    if(!WEB3FORMS_ACCESS_KEY || WEB3FORMS_ACCESS_KEY === 'YOUR_WEB3FORMS_ACCESS_KEY'){
+      mailtoFallback();
+      return;
+    }
+
+    const original = btn.textContent;
+    btn.disabled = true;
+    btn.textContent = 'Изпращане...';
+
+    fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+      body: JSON.stringify({
+        access_key: WEB3FORMS_ACCESS_KEY,
+        subject: data.subject,
+        from_name: 'ПРИСТАН — сайт',
+        name: data.name,
+        phone: data.phone,
+        message: data.message
+      })
+    })
+      .then(r => r.json())
+      .then(res => {
+        btn.disabled = false;
+        btn.textContent = original || defaultLabel;
+        if(res.success){
+          alert('Изпратено! Ще се свържем с теб скоро.');
+          closeDrawer();
+        } else {
+          mailtoFallback();
+        }
+      })
+      .catch(() => {
+        btn.disabled = false;
+        btn.textContent = original || defaultLabel;
+        mailtoFallback();
+      });
+  }
+
+  document.getElementById('burgerBtn').addEventListener('click', () => {
+    document.querySelector('nav.links').style.cssText = 'display:flex; position:absolute; top:100%; left:0; right:0; flex-direction:column; background:var(--ink-green); padding:16px 24px; gap:16px;';
+  });
+
+  renderProducts();
+  renderCart();
+})();
+</script>
+
+</body>
+</html>
